@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
-
+import dotenv from 'dotenv';
+import { dot } from 'node:test/reporters';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -7,7 +8,8 @@ import { defineConfig, devices } from '@playwright/test';
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
-
+dotenv.config({ 
+  path: process.env.TEST_ENV ? `./env-files/.env.${process.env.TEST_ENV}` : './env-files/.env.dev' });
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -15,7 +17,7 @@ export default defineConfig({
   //grep: /smoke/, // to run only the tests with @smoke tag
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */

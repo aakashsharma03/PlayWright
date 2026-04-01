@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+  
+      "test:dev": "cross-env TEST_ENV=dev npx playwright test ./32_HandlingMultipleEnv.spec.ts",
+      "test:uat": "cross-env TEST_ENV=uat npx playwright test ./32_HandlingMultipleEnv.spec.ts"
+      
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -11,5 +16,9 @@
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.5.0"
+  },
+  "dependencies": {
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.3.1"
   }
 }
